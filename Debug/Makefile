@@ -39,11 +39,14 @@ SUBDIRS :=
 C_SRCS +=  \
 ../DCMotor.cpp \
 ../DHT11.cpp \
+../FanControl.cpp \
+../FanDisplay.cpp \
 ../main.cpp \
 ../NumberCount.cpp \
 ../PushSW.cpp \
 ../RotaryEncoder.cpp \
 ../ServoMotor.cpp \
+../SwingControl.cpp \
 ../TM1637Disp.cpp
 
 
@@ -56,41 +59,53 @@ ASM_SRCS +=
 OBJS +=  \
 DCMotor.o \
 DHT11.o \
+FanControl.o \
+FanDisplay.o \
 main.o \
 NumberCount.o \
 PushSW.o \
 RotaryEncoder.o \
 ServoMotor.o \
+SwingControl.o \
 TM1637Disp.o
 
 OBJS_AS_ARGS +=  \
 DCMotor.o \
 DHT11.o \
+FanControl.o \
+FanDisplay.o \
 main.o \
 NumberCount.o \
 PushSW.o \
 RotaryEncoder.o \
 ServoMotor.o \
+SwingControl.o \
 TM1637Disp.o
 
 C_DEPS +=  \
 DCMotor.d \
 DHT11.d \
+FanControl.d \
+FanDisplay.d \
 main.d \
 NumberCount.d \
 PushSW.d \
 RotaryEncoder.d \
 ServoMotor.d \
+SwingControl.d \
 TM1637Disp.d
 
 C_DEPS_AS_ARGS +=  \
 DCMotor.d \
 DHT11.d \
+FanControl.d \
+FanDisplay.d \
 main.d \
 NumberCount.d \
 PushSW.d \
 RotaryEncoder.d \
 ServoMotor.d \
+SwingControl.d \
 TM1637Disp.d
 
 OUTPUT_FILE_PATH +=kadai25-26.elf
@@ -115,6 +130,20 @@ LINKER_SCRIPT_DEP+=
 	
 
 ./DHT11.o: .././DHT11.cpp
+	@echo Building file: $<
+	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega328p" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+./FanControl.o: .././FanControl.cpp
+	@echo Building file: $<
+	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega328p" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+./FanDisplay.o: .././FanDisplay.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega328p" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
@@ -150,6 +179,13 @@ LINKER_SCRIPT_DEP+=
 	
 
 ./ServoMotor.o: .././ServoMotor.cpp
+	@echo Building file: $<
+	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega328p" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+./SwingControl.o: .././SwingControl.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega328p" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

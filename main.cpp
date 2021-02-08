@@ -2,41 +2,71 @@
  * kadai25-26.cpp
  *
  * Created: 2021/02/01 11:41:07
- * Author : MorimotoYuma
+ * Author : MorimotoYuma.
  */ 
 #include <avr/io.h>
+
+/*
+	[1.CPU電源投入時の設定]
+	風量レベル1
+	首振り停止
+	
+	[2.表示]
+	※温度表示：温度を整数で表示する．（０?４０°の範囲）
+	１０の位が０ならば１０の位はブランク表示とする．
+	１の位には小数点も表示する．
+	※風量表示：温度連動の場合は「０．」
+	レベル１?５の場合はそれぞれ「１．」?「５．」
+	を表示する．
+	※首振りモード：
+	停止の場合は「０．」
+	６０°，１２０°，１８０°の場合はそれぞれ
+	「１．」「２．」「３．」を表示する．
+
+	[3.風量調節]
+	起動時は風量レベル1．ロータリーエンコーダのつまみを右に回す毎に１ずつ
+	レベルを上げる．レベル５の状態で右に回してもレベル5の状態を保持すること．
+	逆にロータリーエンコーダのつまみを左に回す毎にレベルを下げる．
+	レベル0（温度連動）の状態から左に回してもレベル0の状態を保持すること．
+	※レベル0時の温度と風量の関係
+	22°以下：レベル1風量23?25℃：レベル2風量
+	26?28℃：レベル3風量29?31℃：レベル4風量
+	32℃以上：レベル5風量
+	
+	[4.首振り]
+	起動時は首振り無し．
+	Push SWを1度押下すると，正面を中心に60°の範囲でサーボモータによる
+	首振りを行う．
+	再度Push SWを押下すると，正面を中心に120°の範囲での首振り，
+	再度Push SW を押下すると，正面を中心に180°の範囲での首振り，
+	再度Push SW を押下すると，首振り停止となる．
+	以下，Push SWを押下する度に，上記を繰り返す．
+*/
+#include "FanControl.h"
 #include "TM1637Disp.h"
 
-// comp 汎用クラス
-// comp(a,b)   a と b に整数か浮動小数点数を入れると大きい方を返す.
-template <class Type> Type comp(Type a, Type b){
-	if(a < b) {
-		return b;
-	}else{
-		return a;
-	}
-};
-
 int main(void) {
-	int a = 2;
-	int b = 4;
-	float c = 1.7;
-	float d = 1.1;
-	UCHR data[4] = {10, 10, 10, 10};
 	TM1637Disp disp;
-	while(1) {
-		data[0] = a;
-		data[1] = b;
-		data[3] = comp(a,b);
+	UCHR data[4];
+	FanControl FC;
+	while(1){
+		FC.fanLevelRefresh();
+		data[0] = 1;
+		data[1] = 1;
+		data[2] = 1;
+		data[3] = FC.getFanLevel();
 		disp.numDisp(data);
+			
 		_delay_ms(1000);
 		
-		data[0] = (UCHR)comp(c,d) | 0x80;          // 0x80でピリオドを表示.
-		data[1] = (UCHR) (comp(c,d) * 10.0) % 10;
-		data[3] = 10;
+		/*
+		data[0] = 4;
+		data[1] = 1;
+		data[2] = 4;
+		data[3] = 1;
 		disp.numDisp(data);
 		_delay_ms(1000);
+		*/
 	}
 	return 0;
 }
-

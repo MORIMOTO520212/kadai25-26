@@ -171,10 +171,10 @@
     <Compile Include="FanControl.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="FanDisp.cpp">
+    <Compile Include="FanDisplay.cpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="FanDisp.h">
+    <Compile Include="FanDisplay.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.cpp">
@@ -216,6 +216,11 @@
     <Compile Include="TM1637Disp.h">
       <SubType>compile</SubType>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md">
+      <SubType>compile</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>
