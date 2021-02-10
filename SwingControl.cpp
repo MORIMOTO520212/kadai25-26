@@ -21,9 +21,12 @@
 PushSW sw;
 ServoMotor sm;
 
+SwingControl::SwingControl(){ // 初期値
+	this->swingLevel = 0;
+}
+
 void SwingControl::angleRefresh(void){
 	UCHR s = 1; // 1-加算, -1-減算
-	
 	if(0 == sw.getSwState()){ // スイッチで判別する
 		sw.waitSwOff();
 		this->swingLevel ++;
@@ -34,19 +37,19 @@ void SwingControl::angleRefresh(void){
 		this->swingAngle = 90; // 中央
 	}
 	if(1 == this->swingLevel){ // 60 ~ 120°
-		if(60 > this->swingAngle) s = 1;
-		if(120 < this->swingAngle) s = -1;
-		this->swingAngle + s;
+		if(60 >= this->swingAngle) s = 1;
+		if(120 <= this->swingAngle) s = -1;
+		this->swingAngle += s;
 	}
 	if(2 == this->swingLevel){ // 30 ~ 150°
-		if(30 > this->swingAngle) s = 1;
-		if(150 < this->swingAngle) s = -1;
-		this->swingAngle + s;
+		if(30 >= this->swingAngle) s = 1;
+		if(150 <= this->swingAngle) s = -1;
+		this->swingAngle += s;
 	}
 	if(3 == this->swingLevel){ //  0 ~ 180°
-		if(0 > this->swingAngle) s = 1;
-		if(180 < this->swingAngle) s = -1;
-		this->swingAngle + s;
+		if(0 >= this->swingAngle) s = 1;
+		if(180 <= this->swingAngle) s = -1;
+		this->swingAngle += s;
 	}
 	sm.setAngle(this->swingAngle);
 }

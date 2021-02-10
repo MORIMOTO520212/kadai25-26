@@ -58,17 +58,10 @@ while(1) {
 	_delay_ms(1000);
 	}
 
-[FanControl] モーターを制御
-#include "DCMotor.h"
-DCMotor dcm;
-// setLevel(UCHR level);
-// 0 - 停止
-// 1 - 100
-// 2 - 180
-// 3 - 260
-// 4 - 340
-// 5 - 420
-dcm.setLevel(5);
+[FanControl] プロペラを制御 ロータリーエンコーダの呼び出し
+#include "FanControl.h"
+FanControl FC;
+FC.fanLevelRefresh();
 
 [PushSW]
 #include "PushSW.h"

@@ -18,9 +18,10 @@ typedef	unsigned char	UCHR;
 typedef	unsigned short	USHRT;
 
 class SwingControl{
-	UCHR swingLevel = 0;
-	UCHR swingAngle = 90; // ’†‰›
+	UCHR swingLevel;
+	UCHR swingAngle;
 public:
+	SwingControl();
 	void angleRefresh(void);
 	UCHR getSwingLevel(void);
 };

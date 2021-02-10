@@ -4,7 +4,6 @@
  * Created: 2021/02/01 11:41:07
  * Author : MorimotoYuma.
  */ 
-#include <avr/io.h>
 /*
 	[1.CPU電源投入時の設定]
 	風量レベル1
@@ -41,15 +40,22 @@
 	再度Push SW を押下すると，首振り停止となる．
 	以下，Push SWを押下する度に，上記を繰り返す．
 */
-#include "FanDisplay.h"
+#include <avr/io.h>
+#include <avr/interrupt.h>
+
 #include "SwingControl.h"
-#include "FanControl.h"
+#include "TM1637Disp.h"
+
 
 int main(void) {
-	dispData[4] = {10, 10, 10, 10}; // 初期値
-	FanDisp FD;
+	UCHR dispData[4] = {10, 10, 10, 10}; // 初期値
+	TM1637Disp disp;
+	SwingControl SC;
+	
 	while(1){
-		FD.FanDisplay(UCHR temp, UCHR fanLevel, UCHR swingLevel);
+		SC.angleRefresh();
+		dispData[3] = SC.getSwingLevel();
+		disp.numDisp(dispData);
 		_delay_ms(1000);
 	}
 	return 0;

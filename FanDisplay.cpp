@@ -12,7 +12,7 @@ TM1637Disp disp;
 template <class Type> Type comp(Type a, Type b){ // ‘½•ªŽg‚í‚È‚¢
 	if(a < b) {
 		return b;
-		}else{
+	}else{
 		return a;
 	}
 };
