@@ -18,7 +18,6 @@ typedef		unsigned short	USHRT;
 
 class FanDisp{
 public:
-	FanDisp();
 	void FanDisplay(UCHR temp, UCHR fanLevel, UCHR swingLevel);
 };
 

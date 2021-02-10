@@ -72,6 +72,15 @@ dcm.setLevel(5);
 
 [PushSW]
 #include "PushSW.h"
-Push sw;
+PushSW sw;
 sw.waitSwOn();  // スイッチONの状態まで待つ
 sw.waitSwOff();	// スイッチOFFの状態まで待つ
+
+
+[SwingControl]
+#include "SwingControl.h"
+SwingControl SC;
+while(1){ // 100msごとに割り込み処理？
+	SC.angleRefresh();
+	_delay_ms(100);
+}

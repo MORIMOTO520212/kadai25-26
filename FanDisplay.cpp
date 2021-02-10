@@ -9,7 +9,7 @@ TM1637Disp disp;
 
 // comp 汎用クラス
 // comp(a,b)   a と b に整数か浮動小数点数を入れると大きい方を返す.
-template <class Type> Type comp(Type a, Type b){
+template <class Type> Type comp(Type a, Type b){ // 多分使わない
 	if(a < b) {
 		return b;
 		}else{
@@ -23,5 +23,4 @@ void FanDisp::FanDisplay(UCHR temp, UCHR fanLevel, UCHR swingLevel){
 	data[2] = (int)temp%10;
 	data[3] = (int)temp/10;
 	disp.numDisp(data);
-	_delay_ms(1000);
 }
