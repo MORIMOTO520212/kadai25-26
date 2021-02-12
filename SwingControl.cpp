@@ -15,7 +15,6 @@
 */
 
 #include "SwingControl.h"
-
 #include "PushSW.h"
 #include "ServoMotor.h"
 
@@ -25,7 +24,6 @@ ServoMotor sm;
 SwingControl::SwingControl(){ // 初期値
 	this->swingLevel = 0;
 }
-
 void SwingControl::angleRefresh(void){
 	UCHR s = 1; // 1-加算, -1-減算
 	if(0 == sw.getSwState()){ // スイッチで判別する

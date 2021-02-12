@@ -5,7 +5,6 @@
  * Author : MorimotoYuma
  */ 
 #include <avr/io.h>
-#include <avr/interrupt.h>
 
 #include "SwingControl.h"
 #include "FanControl.h"
