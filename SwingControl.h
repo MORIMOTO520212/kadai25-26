@@ -22,8 +22,8 @@ class SwingControl{
 	UCHR swingAngle;
 public:
 	SwingControl();
-	void angleRefresh(void);
-	UCHR getSwingLevel(void);
+	void angleRefresh(void);  // XV
+	UCHR getSwingLevel(void); // ñU‚è‚Ìİ’è’l‚ğ•Ô‚·
 };
 
 #endif /* SWINGCONTROL_H_ */

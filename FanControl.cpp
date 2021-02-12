@@ -16,17 +16,17 @@
 */
 
 #include "FanControl.h"
-#include "RotaryEncoder.h"
+#include "NumberCount.h"
 #include "DHT11.h"
 #include "DCMotor.h"
 
 
-DHT11 TandH;
-DCMotor DCM;
-RotaryEncoder RE;
+DHT11 TandH;    // 温湿度センサー
+DCMotor DCM;    // モーター制御
+NumberCount nc; // ロータリーエンコーダ制御
 
 void FanControl::fanLevelRefresh(void){
-	if(!RE.getDisplacement()){      // ロータリーエンコーダが0のとき
+	if(!nc.readCounter()){          // ロータリーエンコーダが0のとき
 		if(!TandH.DHT11Read()){		// 温湿度センサから値を取得
 			if(32 <= TandH.getTemperature_H()){
 				this->FanLevel = 5;
@@ -39,11 +39,11 @@ void FanControl::fanLevelRefresh(void){
 			}else if(22 <= TandH.getTemperature_H()){
 				this->FanLevel = 1;
 			}
-		}else{
-			this->FanLevel = 0;
-		}
+		}else{ this->FanLevel = 0; }
+			
+	}else{
+		this->FanLevel = nc.readCounter();
 	}
-	if(RE.getDisplacement())
 	DCM.setLevel(this->FanLevel);
 }
 UCHR FanControl::getFanLevel(void){ // 風量を返す

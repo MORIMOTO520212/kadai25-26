@@ -14,8 +14,6 @@
 typedef		unsigned char	UCHR;
 typedef		unsigned short	USHRT;
 
-#include "TM1637Disp.h"
-
 class FanDisp{
 public:
 	void FanDisplay(UCHR temp, UCHR fanLevel, UCHR swingLevel);

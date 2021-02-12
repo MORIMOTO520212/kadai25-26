@@ -27,16 +27,6 @@
 
 #include "TM1637Disp.h"
 
-// comp 汎用クラス
-// comp(a,b)   a と b に整数か浮動小数点数を入れると大きい方を返す.
-template <class Type> Type comp(Type a, Type b){
-	if(a < b) {
-		return b;
-	}else{
-		return a;
-	}
-};
-
 int a = 2;
 int b = 4;
 float c = 1.7;
@@ -56,7 +46,7 @@ while(1) {
 	data[3] = 10;
 	disp.numDisp(data);
 	_delay_ms(1000);
-	}
+}
 
 [FanControl] プロペラを制御 ロータリーエンコーダの呼び出し
 #include "FanControl.h"

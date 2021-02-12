@@ -9,12 +9,13 @@
 	EswingLevel‚Í0, 1, 2, 3‚Ì’l‚ª“ü‚é
 	[‰ñ“]Šp“x]
 	0 - stop
-	1 - 60 ~ 120‹
-	2 - 30 ~ 150‹
-	3 -  0 ~ 180‹
+	1 - 43 ~ 87‹
+	2 - 21 ~ 109‹
+	3 -  0 ~ 130‹
 */
 
 #include "SwingControl.h"
+
 #include "PushSW.h"
 #include "ServoMotor.h"
 
@@ -34,7 +35,7 @@ void SwingControl::angleRefresh(void){
 	}
 	
 	if(0 == this->swingLevel){
-		this->swingAngle = 90; // ’†‰›
+		this->swingAngle = 65; // ’†‰›
 	}
 	if(1 == this->swingLevel){ // 60 ~ 120‹
 		if(60 >= this->swingAngle) s = 1;
