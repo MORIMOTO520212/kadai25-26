@@ -34,23 +34,21 @@ void SwingControl::angleRefresh(void){
 		if(4 == this->swingLevel) this->swingLevel = 0;
 	}
 	
+	if(1 == this->swingLevel){ // 43 ~ 87‹
+		if(43 == this->swingAngle) s = 1;
+		if(87 == this->swingAngle) s = -1;
+	}
+	if(2 == this->swingLevel){ // 21 ~ 109‹
+		if(21 == this->swingAngle) s = 1;
+		if(109 == this->swingAngle) s = -1;
+	}
+	if(3 == this->swingLevel){ //  0 ~ 130‹
+		if(0 == this->swingAngle) s = 1;
+		if(109 == this->swingAngle) s = -1;
+	}
+	this->swingAngle += s;
 	if(0 == this->swingLevel){
 		this->swingAngle = 65; // ’†‰›
-	}
-	if(1 == this->swingLevel){ // 60 ~ 120‹
-		if(60 >= this->swingAngle) s = 1;
-		if(120 <= this->swingAngle) s = -1;
-		this->swingAngle += s;
-	}
-	if(2 == this->swingLevel){ // 30 ~ 150‹
-		if(30 >= this->swingAngle) s = 1;
-		if(150 <= this->swingAngle) s = -1;
-		this->swingAngle += s;
-	}
-	if(3 == this->swingLevel){ //  0 ~ 180‹
-		if(0 >= this->swingAngle) s = 1;
-		if(180 <= this->swingAngle) s = -1;
-		this->swingAngle += s;
 	}
 	sm.setAngle(this->swingAngle);
 }

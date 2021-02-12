@@ -49,3 +49,9 @@ void FanControl::fanLevelRefresh(void){
 UCHR FanControl::getFanLevel(void){ // •——Ê‚ð•Ô‚·
 	return this->FanLevel;
 }
+UCHR FanControl::getTemperature(void){
+	if(!TandH.DHT11Read()){
+		return TandH.getTemperature_H();
+	}
+	return 0;
+}

@@ -21,11 +21,12 @@ int main(void) {
 	UCHR swingLevel;
 	
 	while(1){
-		fc.fanLevelRefresh();
-		sc.angleRefresh();
-		swingLevel = sc.getSwingLevel(); // 首振りの設定値
-		
-		fd.FanDisplay(UCHR temp, UCHR fanLevel, UCHR swingLevel);
+		fc.fanLevelRefresh(); // ロータリーエンコーダ, DCモーター, 湿温度センサー
+		sc.angleRefresh();    // サーボモーター
+		temp       = fc.getTemperature(); // 温度取得
+		fanLevel   = fc.getFanLevel();    // 風量レベル取得
+		swingLevel = sc.getSwingLevel();  // 首振りの設定値取得
+		fd.FanDisplay(temp, fanLevel, swingLevel);
 		_delay_ms(100);
 	}
 	return 0;
